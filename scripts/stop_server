@@ -10,7 +10,7 @@ case $OS_name in
   '"CentOS Linux 7 (Core)"')
     OS_name='centos7'
     #echo $OS_name
-    sudo systemctl start httpd
+    sudo systemctl stop httpd
     ;;
   SunOS)
     OS_name='solaris'
