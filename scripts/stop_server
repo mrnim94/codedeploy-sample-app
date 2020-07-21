@@ -1,3 +1,27 @@
 #!/bin/bash
-systemctl stop apache2
+
+OS_name=$(awk -F '=' '/PRETTY_NAME/ { print $2 }' /etc/os-release)
+case $OS_name in
+  '"Ubuntu 16.04.6 LTS"')
+    OS_name='ubuntu16'
+    #echo $OS_name
+    systemctl stop apache2
+    ;;
+  '"CentOS Linux 7 (Core)"')
+    OS_name='centos7'
+    #echo $OS_name
+    sudo systemctl start httpd
+    ;;
+  SunOS)
+    OS_name='solaris'
+    echo 'OS_name not supported'
+    exit 2
+    ;;
+  *)
+    echo 'OS_name not supported'
+    exit 2
+    ;;
+esac
+
+
 
